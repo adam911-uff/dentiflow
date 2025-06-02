@@ -24,7 +24,7 @@ const register = async (req , res) => {
         const newUser = await User.create({
             email,
             password: hashedPassword ,
-            role : role || 'utilisateur',
+            role : 'utilisateur',
             etat:'active'
         
         

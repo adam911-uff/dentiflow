@@ -21,7 +21,27 @@ const getSalles = async (req, res) => {
       console.error('❌ Erreur Sequelize (getSalles):', err); // <-- ajoute ça
       res.status(500).json({ message: 'Erreur lors de la récupération', error: err.message });
     }
+};
+  
+  
+  
+const  getSalleById = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const salle = await Salle.findByPk(id);
+      
+      if (!salle) {
+        return res.status(404).json({ message: "Salle non trouvée" });
+      }
+  
+      res.status(200).json(salle);
+    } catch (error) {
+      res.status(500).json({ message: "Erreur lors de la récupération de la salle", error: error.message });
+    }
   };
+
+
+
   
   
 const modifierSalle = async (req , res) => {
@@ -64,6 +84,7 @@ const supprimerSalle = async (req, res)=> {
 module.exports = {
     ajouterSalle,
     getSalles,
+    getSalleById, 
     modifierSalle,
     supprimerSalle
-  };
+};
