@@ -1,22 +1,23 @@
 const express = require('express');
 const router= express.Router();
 
-const{
-
-    ajouterSalle,
-  getSalles,
-  modifierSalle,
-  supprimerSalle    
-} = require('../controllers/salleController');
+const salleController = require('../controllers/salleController');
 const authMiddleware = require('../middleware/authMiddleware');
+
+
+
 router.use(authMiddleware);
 
-router.post('/',ajouterSalle);
 
-router.get('/',getSalles);
 
-router.put('/:id', modifierSalle);
+router.post('/',salleController.ajouterSalle);
 
-router.delete('/:id', supprimerSalle);
+router.get('/',salleController.getSalles);
+
+router.get('/:id',salleController.getSalleById);
+
+router.put('/:id', salleController.modifierSalle);
+
+router.delete('/:id',salleController. supprimerSalle);
 
 module.exports = router;

@@ -8,6 +8,6 @@ router.put('/user/:id', authMiddleware, isAdminMiddleware,adminController.update
 router.get('/users', authMiddleware, isAdminMiddleware, adminController.getAllUsers);
 
 
-
+router.get('/dashboard', authMiddleware, isAdminMiddleware, adminController.getDashboard);
 
 module.exports = router;
